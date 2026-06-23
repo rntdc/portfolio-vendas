@@ -1,0 +1,597 @@
+/* ============================================================
+   PORTFÓLIO RENATO — Folha de estilo
+   Organização:
+     1. Variáveis (cores, fontes, espaçamentos)
+     2. Reset e base
+     3. Utilitários (container, eyebrow, botões)
+     4. Cabeçalho / navegação
+     5. Hero
+     6. Sobre + Trajetória
+     7. Portfólio (grid + cards)
+     8. Contato
+     9. Rodapé
+    10. Responsivo (ajustes mobile)
+   ============================================================ */
+
+/* ============================================================
+   1. VARIÁVEIS
+   ============================================================ */
+:root {
+  /* Cores — claras */
+  --cor-fundo: #f4f1ea;
+  --cor-fundo-suave: #fbf9f4;
+  --cor-fundo-card: #ffffff;
+  --cor-texto: #1b1813;
+  --cor-texto-suave: #565046;
+  --cor-texto-medio: #6b655a;
+  --cor-texto-fraco: #9a917f;
+
+  /* Cores — acento */
+  --cor-acento: #2f4ce0;
+  --cor-acento-claro: #8aa0ff;
+
+  /* Cores — bordas */
+  --cor-borda: #e0d9ca;
+  --cor-borda-clara: #ece6da;
+  --cor-borda-card: #e3ddd0;
+
+  /* Cores — seção escura (contato/rodapé) */
+  --cor-escuro-fundo: #1b1813;
+  --cor-escuro-card: #262219;
+  --cor-escuro-borda: #3a342a;
+  --cor-escuro-texto: #f4f1ea;
+  --cor-escuro-texto-suave: #cfc8b9;
+  --cor-escuro-muted: #8a8270;
+
+  /* Tipografia */
+  --fonte-corpo: 'Hanken Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --fonte-titulo: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --fonte-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Layout / espaçamentos */
+  --largura-max: 1160px;
+  --espaco-lateral: clamp(20px, 5vw, 48px);
+  --raio: 5px;
+}
+
+/* ============================================================
+   2. RESET E BASE
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--cor-acento);
+  color: #fff;
+}
+
+/* ============================================================
+   3. UTILITÁRIOS
+   ============================================================ */
+.container {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding-left: var(--espaco-lateral);
+  padding-right: var(--espaco-lateral);
+}
+
+/* Rótulo pequeno em maiúsculas acima dos títulos */
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cor-acento);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.eyebrow--light {
+  color: var(--cor-acento-claro);
+}
+
+/* Botões */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 26px;
+  border-radius: 3px;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.btn--solid {
+  background: var(--cor-texto);
+  color: var(--cor-fundo);
+}
+
+.btn--solid:hover {
+  opacity: 0.88;
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--cor-texto);
+  border: 1px solid #c9c1b1;
+  padding: 14px 22px;
+}
+
+.btn--outline:hover {
+  background: rgba(27, 24, 19, 0.05);
+}
+
+/* Marca / logo textual */
+.brand {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--cor-texto);
+}
+
+.brand__dot {
+  color: var(--cor-acento);
+}
+
+.brand__dot--light {
+  color: var(--cor-acento-claro);
+}
+
+/* ============================================================
+   4. CABEÇALHO / NAVEGAÇÃO
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(244, 241, 234, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 3vw, 30px);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav__link {
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover {
+  color: var(--cor-acento);
+}
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  padding-top: clamp(28px, 4vw, 56px);
+  padding-bottom: clamp(36px, 7vw, 80px);
+}
+
+.hero__text {
+  flex: 1 1 420px;
+  min-width: 300px;
+}
+
+.hero__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(38px, 6.4vw, 68px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-bottom: 26px;
+  text-wrap: balance;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--cor-acento);
+}
+
+.hero__lead {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--cor-texto-suave);
+  max-width: 30em;
+  margin-bottom: 34px;
+}
+
+.hero__media {
+  flex: 0 1 300px;
+  min-width: 240px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero__photo {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-borda);
+}
+
+/* ============================================================
+   6. SOBRE + TRAJETÓRIA
+   ============================================================ */
+.about {
+  border-top: 1px solid var(--cor-borda);
+  background: var(--cor-fundo-suave);
+}
+
+.about__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(36px, 6vw, 80px);
+  padding-top: clamp(48px, 8vw, 96px);
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+
+.about__head {
+  flex: 1 1 260px;
+  min-width: 240px;
+}
+
+.about__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.about__body {
+  flex: 2 1 420px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.7;
+  color: #3c3830;
+  max-width: 56ch;
+}
+
+/* Trajetória */
+.timeline {
+  margin-top: 14px;
+  border-top: 1px solid #e6e0d3;
+  padding-top: 24px;
+}
+
+.timeline__label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cor-texto-fraco);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.timeline__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline__item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cor-borda-clara);
+}
+
+.timeline__period {
+  font-family: var(--fonte-mono);
+  font-size: 13px;
+  color: var(--cor-acento);
+  min-width: 108px;
+  font-weight: 500;
+}
+
+.timeline__place {
+  font-family: var(--fonte-titulo);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.timeline__role {
+  font-size: 14px;
+  color: var(--cor-texto-medio);
+}
+
+/* ============================================================
+   7. PORTFÓLIO (grid + cards)
+   ============================================================ */
+.portfolio {
+  border-top: 1px solid var(--cor-borda);
+}
+
+.portfolio > .container {
+  padding-top: clamp(48px, 8vw, 96px);
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+
+.portfolio__head {
+  max-width: 640px;
+  margin-bottom: clamp(34px, 5vw, 56px);
+}
+
+.portfolio__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(28px, 4.4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+
+.portfolio__lead {
+  font-size: clamp(15px, 1.7vw, 18px);
+  color: var(--cor-texto-suave);
+}
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(20px, 2.5vw, 30px);
+}
+
+/* Card de projeto */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda-card);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(27, 24, 19, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(27, 24, 19, 0.08);
+}
+
+.card__media {
+  background: #efece3;
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 3vw, 26px);
+  border-bottom: 1px solid #e8e2d5;
+}
+
+.card__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.card__body {
+  padding: clamp(20px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.card__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: clamp(21px, 2.2vw, 25px);
+  letter-spacing: -0.01em;
+}
+
+.card__text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--cor-texto-suave);
+  flex: 1;
+}
+
+.card__role {
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--cor-texto-fraco);
+  padding-top: 14px;
+  border-top: 1px solid var(--cor-borda-clara);
+}
+
+.card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  align-self: flex-start;
+  color: var(--cor-acento);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.card__link:hover {
+  text-decoration: underline;
+}
+
+.card__link span {
+  font-size: 16px;
+}
+
+/* ============================================================
+   8. CONTATO
+   ============================================================ */
+.contact {
+  border-top: 1px solid var(--cor-borda);
+  background: var(--cor-escuro-fundo);
+  color: var(--cor-escuro-texto);
+}
+
+.contact > .container {
+  padding-top: clamp(56px, 9vw, 110px);
+  padding-bottom: clamp(56px, 9vw, 110px);
+}
+
+.contact__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(30px, 5vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+
+.contact__lead {
+  font-size: clamp(16px, 1.8vw, 19px);
+  color: var(--cor-escuro-texto-suave);
+  max-width: 42ch;
+  margin-bottom: 40px;
+}
+
+.contact__channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  background: var(--cor-escuro-card);
+  border: 1px solid var(--cor-escuro-borda);
+  border-radius: 4px;
+  padding: 18px 24px;
+  min-width: 200px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.channel:hover {
+  border-color: var(--cor-acento-claro);
+  transform: translateY(-2px);
+}
+
+.channel__label {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cor-escuro-muted);
+  font-weight: 600;
+}
+
+.channel__value {
+  font-size: 16px;
+  color: var(--cor-escuro-texto);
+  font-weight: 600;
+}
+
+/* ============================================================
+   9. RODAPÉ
+   ============================================================ */
+.site-footer {
+  background: var(--cor-escuro-fundo);
+  color: var(--cor-escuro-muted);
+  border-top: 1px solid #2c281f;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.site-footer__brand {
+  font-family: var(--fonte-titulo);
+  font-size: 18px;
+  color: var(--cor-escuro-texto);
+}
+
+/* ============================================================
+   10. RESPONSIVO (ajustes mobile)
+   O layout já é fluido via flex-wrap, grid auto-fill e clamp().
+   Aqui ficam só os ajustes finos para telas pequenas.
+   ============================================================ */
+@media (max-width: 600px) {
+  /* No mobile a foto aparece antes do texto no hero */
+  .hero__media {
+    order: -1;
+  }
+
+  /* Card de projeto ocupa a largura toda */
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Canais de contato empilhados em largura total */
+  .channel {
+    flex: 1 1 100%;
+  }
+}
