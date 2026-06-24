@@ -281,8 +281,44 @@ a {
 }
 
 .about__head {
-  flex: 1 1 260px;
+  flex: 1 1;
   min-width: 240px;
+}
+
+.about__sketch {
+  margin-top: 40px;
+  max-width: 410px;
+}
+
+.sketch {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sketch__line {
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  animation: sketch-draw 2.6s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.2s;
+}
+
+.sketch__dot--end {
+  opacity: 0;
+  animation: sketch-fadein 0.4s ease forwards 2.7s;
+}
+
+@keyframes sketch-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sketch-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sketch__line { animation: none; stroke-dashoffset: 0; }
+  .sketch__dot--end { animation: none; opacity: 1; }
 }
 
 .about__title {
@@ -335,6 +371,27 @@ a {
   align-items: baseline;
   padding: 14px 0;
   border-bottom: 1px solid var(--cor-borda-clara);
+}
+
+/* Divisor entre experiência profissional e formação:
+   linha de separação com um losango de acento centralizado sobre ela */
+.timeline__item--divider {
+  position: relative;
+  margin-top: 28px;
+  padding-top: 42px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.timeline__item--divider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  background: var(--cor-fundo-suave);
+  border: 1.5px solid var(--cor-acento);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .timeline__period {
@@ -579,10 +636,57 @@ a {
    O layout já é fluido via flex-wrap, grid auto-fill e clamp().
    Aqui ficam só os ajustes finos para telas pequenas.
    ============================================================ */
-@media (max-width: 600px) {
+@media (max-width: 847px) {
   /* No mobile a foto aparece antes do texto no hero */
   .hero__media {
     order: -1;
+  }
+
+  /* Hero centralizado no celular para não ficar torto.
+     Vira coluna: cada bloco ocupa a largura toda e centraliza,
+     mantendo a foto antes do texto via order. */
+  .hero__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__text {
+    width: 100%;
+  }
+
+  .hero__lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-group {
+    justify-content: center;
+  }
+
+  /* Foto de perfil menor em telas estreitas */
+  .hero__photo {
+    max-width: 220px;
+  }
+
+  /* Esconde o traço desenhado no celular */
+  .about__sketch {
+    display: none;
+  }
+
+  /* Seção "Sobre mim" empilhada (uma embaixo da outra) e centralizada */
+  .about__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about__body {
+    align-items: center;
+  }
+
+  .timeline__item {
+    justify-content: center;
   }
 
   /* Card de projeto ocupa a largura toda */
