@@ -218,12 +218,14 @@ a {
   flex-wrap: wrap;
   gap: clamp(32px, 5vw, 64px);
   align-items: center;
-  padding-top: clamp(28px, 4vw, 56px);
+  justify-content: center;
   padding-bottom: clamp(36px, 7vw, 80px);
 }
 
+/* flex-grow: 0 para o texto não esticar e empurrar a foto até a borda —
+   assim o conjunto texto + foto fica centralizado no meio da tela. */
 .hero__text {
-  flex: 1 1 420px;
+  flex: 0 1 600px;
   min-width: 300px;
 }
 
@@ -680,19 +682,22 @@ a {
    O layout já é fluido via flex-wrap, grid auto-fill e clamp().
    Aqui ficam só os ajustes finos para telas pequenas.
    ============================================================ */
-@media (max-width: 847px) {
-  /* No mobile a foto aparece antes do texto no hero */
+/* O hero passa para o layout empilhado mais cedo, aos 1048px: o conjunto
+   texto + foto lado a lado já fica apertado antes do breakpoint geral de
+   847px usado pelo resto da página. */
+@media (max-width: 1048px) {
+  /* A foto aparece antes do texto no hero */
   .hero__media {
     order: -1;
   }
 
-  /* Hero centralizado no celular para não ficar torto.
-     Vira coluna: cada bloco ocupa a largura toda e centraliza,
-     mantendo a foto antes do texto via order. */
+  /* Hero centralizado: vira coluna, cada bloco ocupa a largura toda e
+     centraliza, mantendo a foto antes do texto via order. */
   .hero__inner {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding-top: clamp(28px, 4vw, 56px);
   }
 
   .hero__text {
@@ -708,11 +713,13 @@ a {
     justify-content: center;
   }
 
-  /* Foto de perfil menor em telas estreitas */
+  /* Foto de perfil menor quando empilhada */
   .hero__photo {
     max-width: 220px;
   }
+}
 
+@media (max-width: 847px) {
   /* Esconde o traço desenhado no celular */
   .about__sketch {
     display: none;
@@ -744,10 +751,10 @@ a {
   }
 }
 
-/* Acima do breakpoint mobile (desktop/telas largas): o hero ocupa a
-   altura total da tela, cobrindo toda a viewport do usuário. O conteúdo
-   fica centralizado verticalmente graças ao align-items: center do hero. */
-@media (min-width: 848px) {
+/* Acima do breakpoint do hero (telas largas, layout lado a lado): o hero
+   ocupa a altura total da tela, cobrindo toda a viewport do usuário. O
+   conteúdo fica centralizado verticalmente graças ao align-items: center. */
+@media (min-width: 1049px) {
   .hero__inner {
     min-height: 100vh;
   }
