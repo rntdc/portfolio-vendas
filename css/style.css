@@ -454,6 +454,7 @@ a {
 
 /* Card de projeto */
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--cor-fundo-card);
@@ -461,12 +462,55 @@ a {
   border-radius: var(--raio);
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(27, 24, 19, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+              background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .card:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 26px rgba(27, 24, 19, 0.08);
+  background: var(--cor-acento);
+  border-color: var(--cor-acento);
+}
+
+/* No hover o card fica azul, então todo o texto passa a branco. */
+.card__title,
+.card__text,
+.card__role,
+.card__link {
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover .card__title,
+.card:hover .card__text,
+.card:hover .card__role,
+.card:hover .card__link {
+  color: #fff;
+}
+
+/* Linha divisória acima da função ganha contraste sobre o azul. */
+.card:hover .card__role {
+  border-top-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Brilho de acento que acompanha o cursor sobre o card.
+   A posição vem das variáveis --mx / --my, atualizadas no JS conforme
+   o ponteiro se move. pointer-events: none mantém o link clicável. */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%),
+              rgba(255, 255, 255, 0.18), transparent 60%);
+}
+
+.card:hover::after {
+  opacity: 1;
 }
 
 .card__media {
@@ -697,5 +741,14 @@ a {
   /* Canais de contato empilhados em largura total */
   .channel {
     flex: 1 1 100%;
+  }
+}
+
+/* Acima do breakpoint mobile (desktop/telas largas): o hero ocupa a
+   altura total da tela, cobrindo toda a viewport do usuário. O conteúdo
+   fica centralizado verticalmente graças ao align-items: center do hero. */
+@media (min-width: 848px) {
+  .hero__inner {
+    min-height: 100vh;
   }
 }
