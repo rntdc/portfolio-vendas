@@ -694,7 +694,6 @@ a {
   /* Hero centralizado: vira coluna, cada bloco ocupa a largura toda e
      centraliza, mantendo a foto antes do texto via order. */
   .hero__inner {
-    flex-direction: column;
     align-items: center;
     text-align: center;
     padding-top: clamp(28px, 4vw, 56px);
