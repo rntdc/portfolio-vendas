@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Gerador do OG image (1200x630)</title>
+  <!--
+    ============================================================
+    GERADOR DA IMAGEM DE PREVIEW DO LINK
+    ============================================================
+    Esta página existe só para virar imagem. Ela é o card que aparece
+    quando o link do portfólio é colado no WhatsApp, LinkedIn ou e-mail.
+
+    Como gerar de novo depois de editar:
+      1. abrir este arquivo no navegador
+      2. screenshot do .og em exatamente 1200x630
+      3. salvar como imgs/og-image.png
+    ============================================================
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* O documento tem exatamente o tamanho do card, sem margem em volta:
+       assim um screenshot de página inteira já sai em 1200x630 certinho. */
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+    }
+
+    .og {
+      width: 1200px;
+      height: 630px;
+      background: #f4f1ea;
+      font-family: 'Hanken Grotesk', system-ui, sans-serif;
+      color: #1b1813;
+      padding: 72px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Faixa de acento na borda esquerda */
+    .og::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: #2f4ce0;
+    }
+
+    .og__brand {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .og__brand span { color: #2f4ce0; }
+
+    .og__title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 66px;
+      font-weight: 500;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      max-width: 17ch;
+    }
+
+    .og__title em {
+      font-style: italic;
+      color: #2f4ce0;
+    }
+
+    .og__lead {
+      font-size: 24px;
+      color: #565046;
+      margin-top: 22px;
+      max-width: 34ch;
+      line-height: 1.45;
+    }
+
+    .og__footer {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      border-top: 1px solid #e0d9ca;
+      padding-top: 24px;
+    }
+
+    .og__label {
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9a917f;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .og__brands {
+      display: flex;
+      gap: 24px;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1b1813;
+    }
+  </style>
+</head>
+<body>
+  <div class="og">
+    <div>
+      <p class="og__brand">Renato<span>.</span></p>
+    </div>
+
+    <div>
+      <h1 class="og__title">Sites e landing pages sob medida para marcas que precisam <em>converter</em>.</h1>
+      <p class="og__lead">Páginas rápidas, feitas do briefing ao ar.</p>
+    </div>
+
+    <div class="og__footer">
+      <span class="og__label">Projetos</span>
+      <div class="og__brands">
+        <span>Coca-Cola Shoes</span>
+        <span>Campari</span>
+        <span>Kempinski</span>
+        <span>Neugebauer</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

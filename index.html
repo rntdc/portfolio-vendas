@@ -3,13 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Renato · Desenvolvedor de software — Soluções digitais e landing pages</title>
-  <meta name="description" content="Renato, desenvolvedor de software. Crio sites e landing pages bonitas, rápidas e fáceis de usar, sob medida para marcas que querem se destacar.">
+  <title>Renato · Landing pages e sites institucionais sob medida</title>
+  <meta name="description" content="Desenvolvo landing pages e sites institucionais rápidos e sob medida. Projetos para Coca-Cola Shoes, Campari, Kempinski, Neugebauer e Batavo.">
 
-  <!-- Fontes (Google Fonts) -->
+  <!-- ============================================================
+       OPEN GRAPH — preview do link em WhatsApp, LinkedIn e e-mail.
+       Como esta página é enviada 1:1 para clientes, este card é a
+       PRIMEIRA impressão, antes do clique.
+
+       ⚠️ PREENCHER: troque SEU-DOMINIO pela URL real de produção.
+          og:image precisa de URL absoluta — caminho relativo não funciona.
+       ============================================================ -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Renato">
+  <meta property="og:url" content="https://SEU-DOMINIO.vercel.app/">
+  <meta property="og:title" content="Renato · Landing pages e sites institucionais sob medida">
+  <meta property="og:description" content="Páginas rápidas, feitas sob medida. Projetos para Coca-Cola Shoes, Campari, Kempinski, Neugebauer e Batavo.">
+  <meta property="og:image" content="https://SEU-DOMINIO.vercel.app/imgs/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Renato: landing pages e sites institucionais">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Renato · Landing pages e sites institucionais sob medida">
+  <meta name="twitter:description" content="Páginas rápidas, feitas sob medida, para marcas que precisam converter.">
+  <meta name="twitter:image" content="https://SEU-DOMINIO.vercel.app/imgs/og-image.png">
+
+  <meta name="theme-color" content="#f4f1ea">
+  <link rel="canonical" href="https://SEU-DOMINIO.vercel.app/">
+
+  <!-- Fontes (Google Fonts) — só os pesos realmente usados no CSS:
+       Hanken 400/500/600 · Newsreader 500/600 + itálico 500 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap">
 
   <!-- Estilos -->
   <link rel="stylesheet" href="css/style.css">
@@ -23,8 +51,9 @@
     <div class="container site-header__inner">
       <a href="#top" class="brand">Renato<span class="brand__dot">.</span></a>
       <nav class="nav" aria-label="Navegação principal">
-        <a href="#portfolio" class="nav__link">Portfólio</a>
-        <a href="#sobre" class="nav__link">Sobre</a>
+        <a href="#portfolio" class="nav__link">Projetos</a>
+        <a href="#servicos" class="nav__link">Serviços</a>
+        <a href="#processo" class="nav__link">Processo</a>
         <a href="#contato" class="nav__link">Contato</a>
       </nav>
     </div>
@@ -32,22 +61,62 @@
 
   <a id="top"></a>
 
+  <main>
+
   <!-- ============================================================
        HERO
        ============================================================ -->
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__text">
-        <p class="eyebrow">Olá, eu sou o Renato</p>
-        <h1 class="hero__title">Crio soluções digitais e landing pages para marcas que querem <em>se destacar</em>.</h1>
-        <p class="hero__lead">Páginas bonitas, rápidas e fáceis de usar.</p>
+        <p class="eyebrow">Landing pages &amp; sites institucionais</p>
+        <h1 class="hero__title">Sites e landing pages sob medida para marcas que precisam <em>converter</em>.</h1>
+        <p class="hero__lead">Trabalho com agências e empresas há anos, em projetos para marcas que você conhece. Código próprio, sem tema pesado nem plugin desnecessário. E você fala direto comigo, do briefing à publicação.</p>
         <div class="btn-group">
-          <a href="#portfolio" class="btn btn--solid">Ver meus trabalhos</a>
-          <a href="#contato" class="btn btn--outline">Falar comigo</a>
+          <a href="https://wa.me/5551985896322" class="btn btn--solid" target="_blank" rel="noopener noreferrer" data-track="cta_hero_whatsapp">Continuar no WhatsApp</a>
+          <a href="#portfolio" class="btn btn--outline" data-track="cta_hero_projetos">Ver projetos</a>
         </div>
       </div>
       <div class="hero__media">
-        <img src="imgs/photo.jpeg" alt="Retrato de Renato, desenvolvedor de software" class="hero__photo" width="1125" height="1613">
+        <img src="imgs/photo.webp" alt="Retrato de Renato, desenvolvedor de software" class="hero__photo" width="505" height="640" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAIXA DE MARCAS
+       Empresta autoridade antes de qualquer argumento. É o ativo
+       mais forte da página e antes estava enterrado no meio dela.
+       ============================================================ -->
+  <section class="brands" aria-label="Marcas atendidas">
+    <div class="container brands__inner">
+      <p class="brands__label">Projetos que ajudei a colocar no ar</p>
+
+      <!-- Letreiro: a segunda lista é uma cópia exata da primeira. É ela que
+           permite o laço sem emenda — quando a primeira termina de sair pela
+           esquerda, a cópia já está exatamente na posição inicial. Fica com
+           aria-hidden para o leitor de tela não anunciar as marcas duas vezes. -->
+      <div class="brands__marquee">
+        <ul class="brands__track">
+          <li>Coca-Cola Shoes</li>
+          <li>Campari</li>
+          <li>Batavo</li>
+          <li>Neugebauer</li>
+          <li>Kempinski</li>
+          <li>Bettanin</li>
+          <li>Queijos President</li>
+          <li>Mercopar</li>
+        </ul>
+        <ul class="brands__track" aria-hidden="true">
+          <li>Coca-Cola Shoes</li>
+          <li>Campari</li>
+          <li>Batavo</li>
+          <li>Neugebauer</li>
+          <li>Kempinski</li>
+          <li>Bettanin</li>
+          <li>Queijos President</li>
+          <li>Mercopar</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -58,131 +127,207 @@
   <section id="portfolio" class="portfolio">
     <div class="container">
       <div class="portfolio__head">
-        <p class="eyebrow">Portfólio</p>
-        <h2 class="portfolio__title">Projetos que ajudei a colocar no ar.</h2>
-        <p class="portfolio__lead">Marcas reconhecidas em que atuei no desenvolvimento, dentro do squad de tecnologia da DZ Estúdio.</p>
+        <p class="eyebrow">Projetos</p>
+        <h2 class="portfolio__title">Marcas que confiaram no trabalho.</h2>
+        <p class="portfolio__lead">Atuei no desenvolvimento destes projetos dentro do squad de tecnologia da DZ Estúdio, ao lado dos times de design e conteúdo.</p>
       </div>
 
       <div class="portfolio__grid">
 
-        <!-- Coza -->
         <article class="card">
           <div class="card__media">
-            <img src="imgs/coza.png" alt="Site da marca Coza" loading="lazy" class="card__img">
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Coza</h3>
-            <p class="card__text">Uma vitrine digital leve e elegante para a marca de organização da casa.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="https://www.coza.com.br/" class="card__link" target="_blank" rel="noopener noreferrer">Ver site ao vivo <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <!-- Bettanin -->
-        <article class="card">
-          <div class="card__media">
-            <img src="imgs/bettanin.png" alt="Site da marca Bettanin" loading="lazy" class="card__img">
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Bettanin</h3>
-            <p class="card__text">Presença online moderna que comunica inovação e proximidade com o cliente.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="https://www.bettanin.com.br/" class="card__link" target="_blank" rel="noopener noreferrer">Ver site ao vivo <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <!-- Neugebauer -->
-        <article class="card">
-          <div class="card__media">
-            <img src="imgs/neug.png" alt="Site da marca Neugebauer" loading="lazy" class="card__img">
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Neugebauer</h3>
-            <p class="card__text">Vitrine digital cheia de personalidade para uma das marcas de chocolate mais tradicionais do Brasil.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="https://www.neugebauer.com.br/pt" class="card__link" target="_blank" rel="noopener noreferrer">Ver site ao vivo <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <!-- Queijos President -->
-        <article class="card">
-          <div class="card__media">
-            <img src="imgs/president.png" alt="Site da marca Queijos President" loading="lazy" class="card__img">
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Queijos President</h3>
-            <p class="card__text">Página de marca sofisticada que valoriza a tradição e o sabor dos queijos President.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="https://www.queijospresident.com.br/" class="card__link" target="_blank" rel="noopener noreferrer">Ver site ao vivo <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <!-- Kempinski Laje de Pedra -->
-        <article class="card">
-          <div class="card__media">
-            <img src="imgs/kempinski.png" alt="Site do Kempinski Laje de Pedra" loading="lazy" class="card__img">
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Kempinski Laje de Pedra</h3>
-            <p class="card__text">Presença online elegante para o hotel, com foco em encantar e converter hóspedes.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="https://lajedepedra.com.br/" class="card__link" target="_blank" rel="noopener noreferrer">Ver site ao vivo <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <!-- Batavo -->
-        <article class="card">
-          <div class="card__media">
-            <img src="imgs/batavo.png" alt="Site da marca Batavo" loading="lazy" class="card__img">
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Batavo</h3>
-            <p class="card__text">Página de produto apetitosa que valoriza o lançamento e conquista o consumidor.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="https://www.linkedin.com/pulse/voc%C3%AA-conhece-o-squad-de-tecnologia-da-dz-dzestudio" class="card__link" target="_blank" rel="noopener noreferrer">Ver case <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <!-- Coca-Cola Shoes -->
-        <article class="card">
-          <div class="card__media">
-            <img src="imgs/cc-shoes.png" alt="Site da linha Coca-Cola Shoes" loading="lazy" class="card__img">
+            <img src="imgs/cc-shoes.webp" alt="Site da linha Coca-Cola Shoes" loading="lazy" class="card__img" width="991" height="584">
           </div>
           <div class="card__body">
             <h3 class="card__title">Coca-Cola Shoes</h3>
-            <p class="card__text">Experiência de marca com visual marcante para a linha de calçados.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="https://www.linkedin.com/pulse/voc%C3%AA-conhece-o-squad-de-tecnologia-da-dz-dzestudio" class="card__link" target="_blank" rel="noopener noreferrer">Ver case <span aria-hidden="true">→</span></a>
+            <p class="card__text">Experiência de marca para a linha de calçados, com visual forte e navegação que segura o visitante até a vitrine de produtos.</p>
+            <!-- ⚠️ PREENCHER: trocar pela sua atuação real neste projeto -->
+            <p class="card__role">Desenvolvimento front-end · squad tech DZ Estúdio</p>
+            <a href="https://www.linkedin.com/pulse/voc%C3%AA-conhece-o-squad-de-tecnologia-da-dz-dzestudio/" class="card__link" target="_blank" rel="noopener noreferrer" data-track="portfolio_link" data-projeto="cocacola">Ver case <span aria-hidden="true">&rarr;</span></a>
           </div>
         </article>
 
-        <!-- Campari Academy -->
         <article class="card">
           <div class="card__media">
-            <img src="imgs/campari-academy.png" alt="Site da Campari Academy" loading="lazy" class="card__img">
+            <img src="imgs/campari-academy.webp" alt="Site da Campari Academy" loading="lazy" class="card__img" width="991" height="584">
           </div>
           <div class="card__body">
             <h3 class="card__title">Campari Academy</h3>
-            <p class="card__text">Plataforma digital sofisticada para conteúdos e serviços exclusivos.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="#" class="card__link" target="_blank" rel="noopener noreferrer">Ver case <span aria-hidden="true">→</span></a>
+            <p class="card__text">Plataforma de conteúdo e cursos para profissionais de bar: área logada, trilhas de aprendizado e catálogo de conteúdo.</p>
+            <!-- ⚠️ PREENCHER: trocar pela sua atuação real neste projeto -->
+            <p class="card__role">Desenvolvimento front-end · squad tech DZ Estúdio</p>
+            <a href="https://www.campariacademy.com/pt-br/" class="card__link" target="_blank" rel="noopener noreferrer" data-track="portfolio_link" data-projeto="campari">Ver site ao vivo <span aria-hidden="true">&rarr;</span></a>
           </div>
         </article>
 
-        <!-- Mercopar -->
         <article class="card">
           <div class="card__media">
-            <img src="imgs/mercopar2023.png" alt="Site do evento Mercopar 2023" loading="lazy" class="card__img">
+            <img src="imgs/neug.webp" alt="Site da marca Neugebauer" loading="lazy" class="card__img" width="991" height="584">
           </div>
           <div class="card__body">
-            <h3 class="card__title">Mercopar</h3>
-            <p class="card__text">Site de evento dinâmico que conecta expositores e visitantes da feira.</p>
-            <p class="card__role">Desenvolvimento de software no squad tech da DZ Estúdio</p>
-            <a href="https://www.linkedin.com/pulse/voc%C3%AA-conhece-o-squad-de-tecnologia-da-dz-dzestudio" class="card__link" target="_blank" rel="noopener noreferrer">Ver case <span aria-hidden="true">→</span></a>
+            <h3 class="card__title">Neugebauer</h3>
+            <p class="card__text">Vitrine digital para uma das marcas de chocolate mais tradicionais do Brasil, com catálogo de produtos e território de marca.</p>
+            <!-- ⚠️ PREENCHER: trocar pela sua atuação real neste projeto -->
+            <p class="card__role">Desenvolvimento front-end · squad tech DZ Estúdio</p>
+            <a href="https://www.neugebauer.com.br/pt" class="card__link" target="_blank" rel="noopener noreferrer" data-track="portfolio_link" data-projeto="neugebauer">Ver site ao vivo <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__media">
+            <img src="imgs/batavo.webp" alt="Página de produto da marca Batavo" loading="lazy" class="card__img" width="991" height="584">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Batavo</h3>
+            <p class="card__text">Página de lançamento de produto, pensada para apresentar o item novo e levar o consumidor até o ponto de compra.</p>
+            <!-- ⚠️ PREENCHER: trocar pela sua atuação real neste projeto -->
+            <p class="card__role">Desenvolvimento front-end · squad tech DZ Estúdio</p>
+            <a href="https://www.linkedin.com/pulse/voc%C3%AA-conhece-o-squad-de-tecnologia-da-dz-dzestudio/" class="card__link" target="_blank" rel="noopener noreferrer" data-track="portfolio_link" data-projeto="batavo">Ver case <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__media">
+            <img src="imgs/kempinski.webp" alt="Site do Kempinski Laje de Pedra" loading="lazy" class="card__img" width="991" height="584">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Kempinski Laje de Pedra</h3>
+            <p class="card__text">Site do hotel de luxo, construído para transformar visita em reserva: apresentação das suítes, estrutura e caminho direto para a reserva.</p>
+            <!-- ⚠️ PREENCHER: trocar pela sua atuação real neste projeto -->
+            <p class="card__role">Desenvolvimento front-end · squad tech DZ Estúdio</p>
+            <a href="https://lajedepedra.com.br/" class="card__link" target="_blank" rel="noopener noreferrer" data-track="portfolio_link" data-projeto="kempinski">Ver site ao vivo <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__media">
+            <img src="imgs/bettanin.webp" alt="Site da marca Bettanin" loading="lazy" class="card__img" width="991" height="584">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Bettanin</h3>
+            <p class="card__text">Presença online da marca de utilidades domésticas, organizando um catálogo grande de forma que o consumidor ache o produto certo.</p>
+            <!-- ⚠️ PREENCHER: trocar pela sua atuação real neste projeto -->
+            <p class="card__role">Desenvolvimento front-end · squad tech DZ Estúdio</p>
+            <a href="https://www.bettanin.com.br/" class="card__link" target="_blank" rel="noopener noreferrer" data-track="portfolio_link" data-projeto="bettanin">Ver site ao vivo <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__media">
+            <img src="imgs/president.webp" alt="Site da marca Queijos President" loading="lazy" class="card__img" width="991" height="584">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Queijos President</h3>
+            <p class="card__text">Site de marca que apresenta a linha de queijos e as receitas, apostando na tradição como argumento de compra.</p>
+            <!-- ⚠️ PREENCHER: trocar pela sua atuação real neste projeto -->
+            <p class="card__role">Desenvolvimento front-end · squad tech DZ Estúdio</p>
+            <a href="https://www.queijospresident.com.br/" class="card__link" target="_blank" rel="noopener noreferrer" data-track="portfolio_link" data-projeto="president">Ver site ao vivo <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__media">
+            <img src="imgs/mercopar2023.webp" alt="Site do evento Mercopar 2023" loading="lazy" class="card__img" width="991" height="584">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Mercopar 2023</h3>
+            <p class="card__text">Site da feira industrial, conectando expositores e visitantes: programação, credenciamento e informações do evento em um só lugar.</p>
+            <!-- ⚠️ PREENCHER: trocar pela sua atuação real neste projeto -->
+            <p class="card__role">Desenvolvimento front-end · squad tech DZ Estúdio</p>
+            <a href="https://www.linkedin.com/pulse/voc%C3%AA-conhece-o-squad-de-tecnologia-da-dz-dzestudio/" class="card__link" target="_blank" rel="noopener noreferrer" data-track="portfolio_link" data-projeto="mercopar">Ver case <span aria-hidden="true">&rarr;</span></a>
           </div>
         </article>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       O QUE EU ENTREGO
+       Sem preço — valor vai na proposta, personalizado.
+       ============================================================ -->
+  <section id="servicos" class="services">
+    <div class="container">
+      <div class="services__head">
+        <p class="eyebrow">O que eu entrego</p>
+        <h2 class="services__title">Três formas de trabalhar juntos.</h2>
+      </div>
+
+      <div class="services__grid">
+        <article class="service">
+          <h3 class="service__title">Landing page de conversão</h3>
+          <p class="service__text">Página única, focada em um objetivo só. Ideal para quem roda tráfego pago e precisa de um destino que transforme clique em contato.</p>
+          <ul class="service__list">
+            <li>Layout sob medida, sem template</li>
+            <li>Carregamento rápido no celular</li>
+            <li>Textos e estrutura pensados para converter</li>
+            <li>Publicação e domínio configurados</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <h3 class="service__title">Site institucional</h3>
+          <p class="service__text">Presença sólida para empresa cujo site atual não representa o tamanho do negócio. Credibilidade na primeira impressão.</p>
+          <ul class="service__list">
+            <li>Estrutura de páginas planejada com você</li>
+            <li>Performance e acessibilidade cuidadas</li>
+            <li>Preparado para busca e compartilhamento</li>
+            <li>Fácil de evoluir depois</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <h3 class="service__title">Otimização de página existente</h3>
+          <p class="service__text">Você já tem site, mas ele carrega devagar, quebra no celular ou não representa mais a empresa. Reformo o que trava sem começar do zero.</p>
+          <ul class="service__list">
+            <li>Correção de performance e carregamento</li>
+            <li>Ajuste de layout no celular</li>
+            <li>Revisão de texto e estrutura</li>
+            <li>Relatório do que mudou e por quê</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMO FUNCIONA
+       ============================================================ -->
+  <section id="processo" class="process">
+    <div class="container">
+      <div class="process__head">
+        <p class="eyebrow">Processo</p>
+        <h2 class="process__title">Como funciona, do primeiro papo ao ar.</h2>
+        <p class="process__lead">Sem surpresa no meio do caminho. Você sabe o que acontece em cada etapa e acompanha o resultado enquanto ele existe.</p>
+      </div>
+
+      <ol class="process__list">
+        <li class="process__step">
+          <span class="process__num">01</span>
+          <h3 class="process__step-title">Conversa</h3>
+          <p class="process__step-text">Entendo o negócio, quem é o cliente e o que precisa acontecer na página. Sem custo e sem compromisso.</p>
+        </li>
+        <li class="process__step">
+          <span class="process__num">02</span>
+          <h3 class="process__step-title">Proposta fechada</h3>
+          <p class="process__step-text">Escopo, prazo e valor definidos por escrito. O que está incluso e o que não está, claro desde o começo.</p>
+        </li>
+        <li class="process__step">
+          <span class="process__num">03</span>
+          <h3 class="process__step-title">Desenvolvimento</h3>
+          <p class="process__step-text">Você acompanha por um link ao vivo, atualizado conforme avanço. Ajuste no meio do caminho é esperado, não problema.</p>
+        </li>
+        <li class="process__step">
+          <span class="process__num">04</span>
+          <h3 class="process__step-title">Entrega</h3>
+          <p class="process__step-text">Página no ar, domínio configurado e testada em celular e desktop antes de você mostrar pra alguém.</p>
+        </li>
+        <li class="process__step">
+          <span class="process__num">05</span>
+          <h3 class="process__step-title">Acompanhamento</h3>
+          <p class="process__step-text">Depois do ar eu não sumo. Ajuste pontual, dúvida ou correção continuam comigo.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -192,8 +337,8 @@
   <section id="sobre" class="about">
     <div class="container about__inner">
       <div class="about__head">
-        <p class="eyebrow">Sobre mim</p>
-        <h2 class="about__title">Cuidado em cada detalhe, do briefing ao ar.</h2>
+        <p class="eyebrow">Quem faz o trabalho</p>
+        <h2 class="about__title">Você fala direto com quem escreve o código.</h2>
         <div class="about__sketch" aria-hidden="true">
           <svg class="sketch" viewBox="0 0 420 640" preserveAspectRatio="xMidYMid meet">
             <path class="sketch__line" d="M250,60 C110,120 330,180 210,250 C110,310 330,350 220,420 C150,470 300,510 200,560 C150,585 250,600 300,585" fill="none" stroke="var(--cor-acento)" stroke-width="1.6" stroke-linecap="round"></path>
@@ -204,11 +349,21 @@
       </div>
 
       <div class="about__body">
-        <p>Desenvolvo sites e landing pages que refletem a essência da sua marca, sempre com foco em credibilidade e numa ótima primeira impressão.</p>
-<p>Trabalho com agências e empresas <b>reconhecidas</b>, mantendo um alto padrão em cada projeto.</p>
-<p>Antes de começar, faço questão de entender o seu negócio. É assim que entrego um resultado que você tem orgulho de mostrar.</p>
+        <!-- As marcas não se repetem aqui de propósito: elas já aparecem na
+             faixa do topo e nos cards do portfólio. Este parágrafo só amarra
+             aquele portfólio a mim e diz em que condição ele foi feito. -->
+        <p>Sou o Renato. Todo o portfólio acima é trabalho que fiz no squad de tecnologia da DZ Estúdio. Cliente grande, prazo de agência, página que não pode cair no lançamento.</p>
+        <p>Aqui não tem camada de atendimento. Quem ouve o briefing é quem escreve o código, então o ajuste que você pede é feito, não agendado para a próxima reunião.</p>
 
-        <!-- Trajetória -->
+        <!-- ⚠️ PREENCHER (opcional): a trajetória abaixo mostra emprego atual na
+             FUNDATEC, o que levanta a pergunta "ele tem tempo para o meu
+             projeto?". Uma frase dizendo como você toca projetos externos
+             (quantos em paralelo, em que prazo responde) fecha essa objeção
+             antes de o cliente perguntar. Só escreva o que for verdade. -->
+
+        <!-- Trajetória profissional. Sustenta o "squad tech DZ Estúdio" que
+             aparece em todos os cards do portfólio: sem isso a afirmação fica
+             sem lastro na página. -->
         <div class="timeline">
           <p class="timeline__label">Trajetória</p>
           <ul class="timeline__list">
@@ -222,23 +377,15 @@
               <span class="timeline__place">FLANP</span>
               <span class="timeline__role">Desenvolvedor de software</span>
             </li>
-            <li class="timeline__item" style="border-bottom: none;">
+            <li class="timeline__item">
               <span class="timeline__period">2021 a 2023</span>
               <span class="timeline__place">DZ Estúdio</span>
               <span class="timeline__role">Desenvolvedor · squad tech</span>
             </li>
-            <li class="timeline__item timeline__item--divider">
-              <span class="timeline__period">Formação</span>
-              <span class="timeline__place">Instituto Federal do Rio Grande do Sul</span>
-              <span class="timeline__role">Superior em Análise e Desenvolvimento de Sistemas</span>
-            </li>
-            <li class="timeline__item">
-              <span class="timeline__period">Formação</span>
-              <span class="timeline__place">Instituto Federal do Rio Grande do Sul</span>
-              <span class="timeline__role">Técnico em Informática · Ensino Médio</span>
-            </li>
           </ul>
         </div>
+
+        <p class="about__credential">Superior em Análise e Desenvolvimento de Sistemas pelo Instituto Federal do Rio Grande do Sul.</p>
       </div>
     </div>
   </section>
@@ -249,15 +396,19 @@
   <section id="contato" class="contact">
     <div class="container">
       <p class="eyebrow eyebrow--light">Contato</p>
-      <h2 class="contact__title">Vamos conversar quando fizer sentido para você.</h2>
-      <p class="contact__lead">Sem pressa e sem compromisso. Estou por aqui para o próximo passo, quando você quiser dar.</p>
+      <h2 class="contact__title">Me conta o que você precisa.</h2>
+      <p class="contact__lead">Chama no WhatsApp que a gente continua a conversa por lá. Se não for pra mim, eu falo na hora, sem enrolar você.</p>
 
       <div class="contact__channels">
-        <a href="mailto:rntdek@gmail.com" class="channel">
+        <a href="https://wa.me/5551985896322" class="channel channel--primary" target="_blank" rel="noopener noreferrer" data-track="contato_whatsapp">
+          <span class="channel__label">WhatsApp</span>
+          <span class="channel__value">(51) 98589-6322 →</span>
+        </a>
+        <a href="mailto:rntdek@gmail.com" class="channel" data-track="contato_email">
           <span class="channel__label">E-mail</span>
           <span class="channel__value">rntdek@gmail.com →</span>
         </a>
-        <a href="https://www.linkedin.com/in/renato-dekeches/" class="channel" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/renato-dekeches/" class="channel" target="_blank" rel="noopener noreferrer" data-track="contato_linkedin">
           <span class="channel__label">LinkedIn</span>
           <span class="channel__value">/renato-dekeches →</span>
         </a>
@@ -265,16 +416,19 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ============================================================
        RODAPÉ
        ============================================================ -->
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <span class="site-footer__brand">Renato<span class="brand__dot brand__dot--light">.</span></span>
-      <span>© <span id="year">2026</span> Renato · Soluções digitais &amp; landing pages</span>
+      <span>© <span id="year">2026</span> Renato · Landing pages &amp; sites institucionais</span>
     </div>
   </footer>
 
+  <script src="js/analytics.js" defer></script>
   <script src="js/script.js" defer></script>
 
   <!-- Vercel Analytics (servido pela Vercel; 404 esperado em ambiente local) -->

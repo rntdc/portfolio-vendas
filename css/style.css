@@ -6,11 +6,18 @@
      3. Utilitários (container, eyebrow, botões)
      4. Cabeçalho / navegação
      5. Hero
-     6. Sobre + Trajetória
-     7. Portfólio (grid + cards)
-     8. Contato
-     9. Rodapé
-    10. Responsivo (ajustes mobile)
+     6. Faixa de marcas
+     7. Sobre
+     8. Portfólio (grid + cards)
+     9. Serviços
+    10. Processo
+    11. Contato
+    12. Rodapé
+    13. Responsivo (ajustes mobile)
+
+   Ritmo de fundo das seções (alterna para separar os blocos):
+     hero claro · marcas suave · portfólio claro · serviços suave ·
+     processo claro · sobre suave · contato ESCURO
    ============================================================ */
 
 /* ============================================================
@@ -24,7 +31,10 @@
   --cor-texto: #1b1813;
   --cor-texto-suave: #565046;
   --cor-texto-medio: #6b655a;
-  --cor-texto-fraco: #9a917f;
+  /* Escurecido de #9a917f para passar em contraste AA (4.5:1) nos textos
+     pequenos que usam este tom: rótulo das marcas, formação e função nos
+     cards. O #9a917f original ficava em 2.97:1 sobre o fundo claro. */
+  --cor-texto-fraco: #7b7260;
 
   /* Cores — acento */
   --cor-acento: #2f4ce0;
@@ -41,7 +51,8 @@
   --cor-escuro-borda: #3a342a;
   --cor-escuro-texto: #f4f1ea;
   --cor-escuro-texto-suave: #cfc8b9;
-  --cor-escuro-muted: #8a8270;
+  /* Clareado de #8a8270 (4.16:1) para 4.81:1 sobre o card escuro. */
+  --cor-escuro-muted: #958d7a;
 
   /* Tipografia */
   --fonte-corpo: 'Hanken Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -267,7 +278,104 @@ a {
 }
 
 /* ============================================================
-   6. SOBRE + TRAJETÓRIA
+   6. FAIXA DE MARCAS
+   Tira estreita logo abaixo do hero. Empresta autoridade antes de
+   qualquer argumento — por isso vem cedo e com pouco enfeite.
+   ============================================================ */
+.brands {
+  border-top: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-borda);
+  background: var(--cor-fundo-suave);
+}
+
+.brands__inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+/* flex-shrink: 0 mantém o rótulo inteiro numa linha só. Antes o conjunto
+   rótulo + marcas estourava a largura e quebrava para a linha de baixo. */
+.brands__label {
+  flex-shrink: 0;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cor-texto-fraco);
+  font-weight: 600;
+}
+
+/* Janela do letreiro.
+   min-width: 0 é obrigatório: por padrão um item flex se recusa a encolher
+   abaixo do tamanho do próprio conteúdo, e sem isso o overflow não recorta
+   nada — a faixa voltaria a empurrar o layout. */
+.brands__marquee {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  overflow: hidden;
+  /* Esfumaça as duas pontas para os nomes entrarem e saírem sem corte seco. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+}
+
+/* O padding-right repete a medida do gap para que o espaço entre a última
+   marca de uma cópia e a primeira da seguinte seja igual ao espaço entre
+   quaisquer duas marcas. Sem ele aparece um salto visível na emenda. */
+.brands__track {
+  list-style: none;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: clamp(16px, 2.6vw, 32px);
+  padding-right: clamp(16px, 2.6vw, 32px);
+  animation: brands-scroll 30s linear infinite;
+}
+
+.brands__track li {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(16px, 1.9vw, 21px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--cor-texto);
+  white-space: nowrap;
+}
+
+/* -100% é a largura de uma cópia. No fim do ciclo a segunda cópia ocupa
+   exatamente o lugar onde a primeira começou, então o reinício é invisível. */
+@keyframes brands-scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Pausa no hover: deixa o visitante parar para ler uma marca específica. */
+.brands__marquee:hover .brands__track {
+  animation-play-state: paused;
+}
+
+/* Sem movimento: desliga a animação, esconde a cópia (que só existe para o
+   laço) e devolve o controle ao usuário via rolagem horizontal. */
+@media (prefers-reduced-motion: reduce) {
+  .brands__track {
+    animation: none;
+  }
+
+  .brands__track[aria-hidden="true"] {
+    display: none;
+  }
+
+  .brands__marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* ============================================================
+   7. SOBRE
    ============================================================ */
 .about {
   border-top: 1px solid var(--cor-borda);
@@ -287,9 +395,13 @@ a {
   min-width: 240px;
 }
 
+/* O traço é decorativo, mas define a altura da coluna da esquerda: o SVG tem
+   proporção fixa (420x640), então a largura aqui determina o quanto ele estica
+   para baixo. Está calibrado para acompanhar a altura do texto ao lado. Se o
+   texto do "Sobre" crescer ou encolher bastante, reajustar este valor. */
 .about__sketch {
   margin-top: 40px;
-  max-width: 410px;
+  max-width: 270px;
 }
 
 .sketch {
@@ -344,7 +456,7 @@ a {
   max-width: 56ch;
 }
 
-/* Trajetória */
+/* Trajetória profissional */
 .timeline {
   margin-top: 14px;
   border-top: 1px solid #e6e0d3;
@@ -375,25 +487,10 @@ a {
   border-bottom: 1px solid var(--cor-borda-clara);
 }
 
-/* Divisor entre experiência profissional e formação:
-   linha de separação com um losango de acento centralizado sobre ela */
-.timeline__item--divider {
-  position: relative;
-  margin-top: 28px;
-  padding-top: 42px;
-  border-top: 1px solid var(--cor-borda);
-}
-
-.timeline__item--divider::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 9px;
-  height: 9px;
-  background: var(--cor-fundo-suave);
-  border: 1.5px solid var(--cor-acento);
-  transform: translate(-50%, -50%) rotate(45deg);
+/* O último item dispensa a linha: quem fecha o bloco é a borda superior
+   da formação, logo abaixo. Sem isso ficam duas linhas coladas. */
+.timeline__item:last-child {
+  border-bottom: none;
 }
 
 .timeline__period {
@@ -416,8 +513,17 @@ a {
   color: var(--cor-texto-medio);
 }
 
+/* Formação: uma linha discreta ao pé do texto, não uma seção de currículo. */
+.about__credential {
+  font-size: 14.5px;
+  color: var(--cor-texto-fraco);
+  border-top: 1px solid #e6e0d3;
+  padding-top: 20px;
+  margin-top: 4px;
+}
+
 /* ============================================================
-   7. PORTFÓLIO (grid + cards)
+   8. PORTFÓLIO (grid + cards)
    ============================================================ */
 .portfolio {
   border-top: 1px solid var(--cor-borda);
@@ -448,10 +554,27 @@ a {
   color: var(--cor-texto-suave);
 }
 
+/* São 8 projetos, e 8 divide exato por 1, 2 e 4. Usando só essas contagens
+   de coluna nenhuma fileira fica com vão sobrando em nenhuma largura de
+   tela — 3 colunas deixariam um buraco na última linha. Por isso aqui são
+   breakpoints explícitos em vez de auto-fill.
+   Ao mudar a quantidade de projetos, revisar estes números. */
 .portfolio__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: clamp(20px, 2.5vw, 30px);
+}
+
+@media (min-width: 620px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1040px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Card de projeto */
@@ -525,9 +648,15 @@ a {
   border-bottom: 1px solid #e8e2d5;
 }
 
+/* A imagem preenche a moldura inteira e o object-fit: contain cuida de
+   encaixá-la sem distorcer. Não usar max-width/max-height aqui: as imagens
+   têm atributos width/height no HTML e, sem width/height explícitos no CSS,
+   o navegador adota o height do atributo como altura real — a imagem fica
+   esmagada e o card estica na vertical. Preenchendo a moldura, a altura vem
+   sempre do aspect-ratio do .card__media, o que também zera o layout shift. */
 .card__img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -582,7 +711,162 @@ a {
 }
 
 /* ============================================================
-   8. CONTATO
+   9. SERVIÇOS
+   ============================================================ */
+.services {
+  background: var(--cor-fundo-suave);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.services > .container {
+  padding-top: clamp(48px, 8vw, 96px);
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+
+.services__head {
+  max-width: 640px;
+  margin-bottom: clamp(30px, 4.5vw, 48px);
+}
+
+.services__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(28px, 4.4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda-card);
+  border-radius: var(--raio);
+  padding: clamp(24px, 3vw, 32px);
+  box-shadow: 0 1px 2px rgba(27, 24, 19, 0.03);
+}
+
+.service__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: clamp(20px, 2.1vw, 24px);
+  letter-spacing: -0.01em;
+}
+
+.service__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--cor-texto-suave);
+}
+
+.service__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--cor-borda-clara);
+}
+
+/* Marcador em losango — mesmo motivo de acento usado no resto da página. */
+.service__list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--cor-texto-medio);
+}
+
+.service__list li::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  border: 1.5px solid var(--cor-acento);
+  transform: rotate(45deg);
+}
+
+/* ============================================================
+   10. PROCESSO
+   ============================================================ */
+.process {
+  border-top: 1px solid var(--cor-borda);
+}
+
+.process > .container {
+  padding-top: clamp(48px, 8vw, 96px);
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+
+.process__head {
+  max-width: 640px;
+  margin-bottom: clamp(30px, 4.5vw, 48px);
+}
+
+.process__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(28px, 4.4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+
+.process__lead {
+  font-size: clamp(15px, 1.7vw, 18px);
+  color: var(--cor-texto-suave);
+}
+
+.process__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: clamp(20px, 2.4vw, 28px);
+}
+
+.process__step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 2px solid var(--cor-borda);
+}
+
+.process__num {
+  font-family: var(--fonte-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--cor-acento);
+}
+
+.process__step-title {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: clamp(18px, 1.9vw, 21px);
+  letter-spacing: -0.01em;
+}
+
+.process__step-text {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--cor-texto-suave);
+}
+
+/* ============================================================
+   11. CONTATO
    ============================================================ */
 .contact {
   border-top: 1px solid var(--cor-borda);
@@ -651,8 +935,28 @@ a {
   font-weight: 600;
 }
 
+/* WhatsApp é o canal principal: recebe o acento cheio para não competir
+   em igualdade com e-mail e LinkedIn. */
+.channel--primary {
+  background: var(--cor-acento);
+  border-color: var(--cor-acento);
+}
+
+/* Branco a 75% sobre o azul dava 3.57:1; este tom fica em 5.03:1. */
+.channel--primary .channel__label {
+  color: #dce1ff;
+}
+
+.channel--primary .channel__value {
+  color: #fff;
+}
+
+.channel--primary:hover {
+  border-color: #fff;
+}
+
 /* ============================================================
-   9. RODAPÉ
+   12. RODAPÉ
    ============================================================ */
 .site-footer {
   background: var(--cor-escuro-fundo);
@@ -678,7 +982,7 @@ a {
 }
 
 /* ============================================================
-   10. RESPONSIVO (ajustes mobile)
+   13. RESPONSIVO (ajustes mobile)
    O layout já é fluido via flex-wrap, grid auto-fill e clamp().
    Aqui ficam só os ajustes finos para telas pequenas.
    ============================================================ */
@@ -686,13 +990,14 @@ a {
    texto + foto lado a lado já fica apertado antes do breakpoint geral de
    847px usado pelo resto da página. */
 @media (max-width: 1048px) {
-  /* A foto aparece antes do texto no hero */
+  /* O texto vem antes da foto. A página é enviada 1:1 para clientes, então
+     a primeira tela precisa entregar a mensagem — não um retrato. */
   .hero__media {
-    order: -1;
+    order: 1;
   }
 
-  /* Hero centralizado: vira coluna, cada bloco ocupa a largura toda e
-     centraliza, mantendo a foto antes do texto via order. */
+  /* Hero centralizado: vira coluna, cada bloco ocupa a largura toda
+     e centraliza. */
   .hero__inner {
     align-items: center;
     text-align: center;
@@ -735,18 +1040,36 @@ a {
     align-items: center;
   }
 
-  .timeline__item {
-    justify-content: center;
+  .about__credential {
+    text-align: center;
   }
 
-  /* Card de projeto ocupa a largura toda */
-  .portfolio__grid {
-    grid-template-columns: 1fr;
+  .timeline__item {
+    justify-content: center;
   }
 
   /* Canais de contato empilhados em largura total */
   .channel {
     flex: 1 1 100%;
+  }
+
+  /* Faixa de marcas empilhada: rótulo centralizado em cima e o letreiro
+     ocupando a largura toda embaixo (align-items: stretch, senão ele
+     encolheria até o tamanho do conteúdo no eixo transversal). */
+  .brands__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .brands__label {
+    text-align: center;
+  }
+
+  /* Passos do processo em coluna única: a leitura vira sequência
+     vertical, que é como o celular é lido de qualquer jeito. */
+  .process__list {
+    grid-template-columns: 1fr;
   }
 }
 
