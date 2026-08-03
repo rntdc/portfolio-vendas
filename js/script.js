@@ -4,7 +4,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Efeitos que seguem o cursor nos cards do portfólio:
 //   1. um brilho de acento posicionado onde o ponteiro está (--mx/--my);
 //   2. uma leve inclinação 3D do card em direção ao cursor.
-const cards = document.querySelectorAll('.portfolio .card');
+// Só em telas com cursor de verdade: no celular o toque dispara um mousemove
+// sintético, o card recebia a inclinação 3D (rotateX/rotateY) e ficava com ela
+// até o próximo toque — era isso que deixava o mockup do notebook torto e fora
+// do centro. Sem ponteiro fino, nada disso é aplicado.
+const cards = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  ? document.querySelectorAll('.portfolio .card')
+  : [];
 const semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 cards.forEach((card) => {

@@ -591,13 +591,6 @@ a {
               background-color 0.25s ease, border-color 0.25s ease;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(27, 24, 19, 0.08);
-  background: var(--cor-acento);
-  border-color: var(--cor-acento);
-}
-
 /* No hover o card fica azul, então todo o texto passa a branco. */
 .card__title,
 .card__text,
@@ -606,16 +599,33 @@ a {
   transition: color 0.25s ease, border-color 0.25s ease;
 }
 
-.card:hover .card__title,
-.card:hover .card__text,
-.card:hover .card__role,
-.card:hover .card__link {
-  color: #fff;
-}
+/* Todo o efeito de hover do card só existe onde há cursor de verdade.
+   No celular o toque dispara um :hover que fica grudado depois do tap —
+   o card continuava azul e levantado, e junto com a inclinação 3D do JS
+   deixava o mockup do notebook visivelmente torto/fora do centro. */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(27, 24, 19, 0.08);
+    background: var(--cor-acento);
+    border-color: var(--cor-acento);
+  }
 
-/* Linha divisória acima da função ganha contraste sobre o azul. */
-.card:hover .card__role {
-  border-top-color: rgba(255, 255, 255, 0.25);
+  .card:hover .card__title,
+  .card:hover .card__text,
+  .card:hover .card__role,
+  .card:hover .card__link {
+    color: #fff;
+  }
+
+  /* Linha divisória acima da função ganha contraste sobre o azul. */
+  .card:hover .card__role {
+    border-top-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .card:hover::after {
+    opacity: 1;
+  }
 }
 
 /* Brilho de acento que acompanha o cursor sobre o card.
@@ -632,10 +642,6 @@ a {
   transition: opacity 0.3s ease;
   background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%),
               rgba(255, 255, 255, 0.18), transparent 60%);
-}
-
-.card:hover::after {
-  opacity: 1;
 }
 
 .card__media {
